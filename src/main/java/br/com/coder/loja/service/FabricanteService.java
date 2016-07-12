@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -26,18 +27,18 @@ public class FabricanteService {
 		return new RetornoDTO<List<Fabricante>>(list);
 	}
 
-	@GET
-	@Path("/buscarPorNome")
-	public RetornoDTO<List<Fabricante>> buscarPorNome(String nome) throws Exception {
-		List<Fabricante> list = dao.buscarPorNome(nome);
-		return new RetornoDTO<List<Fabricante>>(list);
-	}
-
+//	@GET
+//	@Path("/buscarPorNome")
+//	public RetornoDTO<List<Fabricante>> buscarPorNome(@PathParam("nome") String nome) throws Exception {
+//		List<Fabricante> list = dao.buscarPorNome(nome);
+//		return new RetornoDTO<List<Fabricante>>(list);
+//	}
+//
 	@POST
 	@Path("/salvar")
 	public RetornoDTO<Fabricante> salvar(Fabricante fabricante) {
 		dao.salvar(fabricante);
-		return new RetornoDTO<Fabricante>(true, fabricante, "Registro salvo com sucesso.");
+		return new RetornoDTO<Fabricante>(true, fabricante, "Registro salvo com sucesso.2");
 	}
 
 	@POST

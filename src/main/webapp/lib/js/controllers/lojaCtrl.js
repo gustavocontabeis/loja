@@ -6,9 +6,9 @@ angular.module("app").controller("lojaCtrl", function($scope, $http, $location, 
 	
 	$scope.carregarDepartamentos = function(){
   	  	$http.get("rest/departamento/buscarTodosEstruturado").success(function(data){
-  	  	  	$scope.departamentos = data;
+  	  	  	$scope.departamentos = retorno(data);
   	  	}).error(function(data, status){
-  	  		msgErro("Não foi possível executar esta ação.");
+  	  		msg(data);
   	  	});
   	 };
   	 

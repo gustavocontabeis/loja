@@ -13,3 +13,7 @@ function msgOK(msg) {
 function msgErro(msg) {
 	toastr.error(msg);
 }
+function retorno(data){
+	msg(data);
+	return data.obj;
+}

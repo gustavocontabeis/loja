@@ -30,7 +30,7 @@
 							<th>Estrutura</th>
 							<th>Nome</th>
 						</tr>
-						<tr ng-repeat="departamento in departamentos" ng-class="{nivel1 : departamento.nivel == 1, nivel2 : departamento.nivel == 2, nivel3 : departamento.nivel == 3, nivel4 : departamento.nivel == 4}">
+						<tr ng-repeat="departamento in departamentos" ng-class="{nivel1 : departamento.nivel == 1, nivel2 : departamento.nivel == 2, nivel3 : departamento.nivel == 3, nivel4 : departamento.nivel == 4} col-xs-12">
 							<td><input type="checkbox" ng-model="departamento.selecionado" /></td>
 							<td ng-click="selecionar(departamento)" style="cursor: pointer;">{{departamento.id}}</td>
 							<td ng-click="selecionar(departamento)" style="cursor: pointer;">{{departamento.nivel}}</td>

@@ -5,6 +5,7 @@ angular.module("app").controller("fabricanteCtrl",function($scope, $http, fabric
 	$scope.carregarTodos = function() {
 		fabricanteAPI.buscarTodos().success(function(data) {
 			$scope.fabricantes = data.obj;
+			msg(data);
 		}).error(function(data, status) {
 			msgErro("Não foi possível retornar os dados.");
 		});
@@ -20,7 +21,7 @@ angular.module("app").controller("fabricanteCtrl",function($scope, $http, fabric
 			$scope.carregarTodos();
 			delete $scope.fabricante;
 			$scope.fabricanteForm.$setPristine();
-			msgOK("Registro salvo com sucesso.");
+			msg(data);
 		}).error(function(data, status) {
 			msg(data);
 		});

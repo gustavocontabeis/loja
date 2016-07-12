@@ -39,29 +39,35 @@ public class DepartamentoService extends BaseService<Departamento> {
 	
 	@GET
 	@Path("/buscarTodosEstruturado")
-	public List<Departamento> buscarTodosEstruturado() throws Exception {
-		List<Departamento> buscarTodos = dao.buscarTodos();
-		Collections.reverse(buscarTodos);
-		Iterator<Departamento> iteratorA = buscarTodos.iterator();
-		while (iteratorA.hasNext()) {
-			Departamento departamentoA = (Departamento) iteratorA.next();
-			Iterator<Departamento> iteratorB = buscarTodos.iterator();
-			sair:
-			while (iteratorB.hasNext()) {
-				Departamento departamentoB = (Departamento) iteratorB.next();
-				if(ehFilho(departamentoA, departamentoB)){
-					if(departamentoB.getFilhos()==null)
-						departamentoB.setFilhos(new ArrayList<Departamento>());
-					departamentoB.getFilhos().add(departamentoA);
-					Collections.sort(departamentoB.getFilhos());
-					iteratorA.remove();
-					break sair;
+	public RetornoDTO<Departamento> buscarTodosEstruturado() throws Exception {
+		List<Departamento> buscarTodos;
+		try {
+			buscarTodos = dao.buscarTodos();
+			Collections.reverse(buscarTodos);
+			Iterator<Departamento> iteratorA = buscarTodos.iterator();
+			while (iteratorA.hasNext()) {
+				Departamento departamentoA = (Departamento) iteratorA.next();
+				Iterator<Departamento> iteratorB = buscarTodos.iterator();
+				sair:
+				while (iteratorB.hasNext()) {
+					Departamento departamentoB = (Departamento) iteratorB.next();
+					if(ehFilho(departamentoA, departamentoB)){
+						if(departamentoB.getFilhos()==null)
+							departamentoB.setFilhos(new ArrayList<Departamento>());
+						departamentoB.getFilhos().add(departamentoA);
+						Collections.sort(departamentoB.getFilhos());
+						iteratorA.remove();
+						break sair;
+					}
 				}
+				
 			}
-			
+			Collections.sort(buscarTodos);
+			return new RetornoDTO(buscarTodos);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new RetornoDTO(e);
 		}
-		Collections.sort(buscarTodos);
-		return buscarTodos;
 	}
 	
 	private boolean ehFilho(Departamento departamentoA, Departamento departamentoB) {

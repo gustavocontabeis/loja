@@ -92,13 +92,13 @@ public class ProdutoDAO extends BaseDAO<Produto> {
 	public List<Produto> consultaProdutosPorDepartamento(String estrutura) { 
 		while(estrutura.endsWith(".000"))
 			estrutura = StringUtils.removeEnd(estrutura, ".000");
-		String sql = "select prod.ID_PRODUTO, img_prod.ID_IMAGEM_PRODUTO, arq.ID_ARQUIVO, prod.ATIVO, prod.COD_REFERENCIA_FABRICANTE, "
-				+ "prod.ID_DEPARTAMENTO, prod.DESCRICAO, prod.ID_FABRICANTE, prod.NOME, prod.ID_VALOR, img_prod.ID_ARQUIVO, "
+		String sql = "select PROD.ID_PRODUTO, img_prod.ID_IMAGEM_PRODUTO, arq.ID_ARQUIVO, PROD.ATIVO, PROD.COD_REFERENCIA_FABRICANTE, "
+				+ "PROD.ID_DEPARTAMENTO, PROD.DESCRICAO, PROD.ID_FABRICANTE, PROD.NOME, PROD.ID_VALOR, img_prod.ID_ARQUIVO, "
 				+ "img_prod.ID_PRODUTO, img_prod.ID_IMAGEM_PRODUTO, arq.DADOS, arq.EXTENCAO, arq.NOME, arq.TAMANHO, vlr.VALOR "
-				+ "from PRODUTO prod "
-				+ "inner join DEPARTAMENTO depto on prod.ID_DEPARTAMENTO=depto.ID_DEPARTAMENTO "
+				+ "from PRODUTO PROD "
+				+ "inner join DEPARTAMENTO depto on PROD.ID_DEPARTAMENTO=depto.ID_DEPARTAMENTO "
 				+ "inner join VALOR vlr on vlr.ID_PRODUTO=PROD.ID_PRODUTO "
-				+ "left outer join IMAGEM_PRODUTO img_prod on prod.ID_PRODUTO=img_prod.ID_PRODUTO "
+				+ "left outer join IMAGEM_PRODUTO img_prod on PROD.ID_PRODUTO=img_prod.ID_PRODUTO "
 				+ "left outer join ARQUIVO arq on img_prod.ID_ARQUIVO=arq.ID_ARQUIVO "
 				+ "where depto.ESTRUTURA LIKE ? and arq.NOME=?"; 
 		Session session = getSession();

@@ -11,16 +11,18 @@
 				<div ng-hide="fabricantes.length > 0">Nenhum fabricante na tabela.</div>
 				<table class="table table-striped" ng-show="carrinhos.length > 0">
 					<tr>
-						<th>Sel.</th>
-						<th>Sel.</th>
-						<th>Sel.</th>
-						<th>Sel.</th>
+						<th>Cod.</th>
+						<th>Data da compra</th>
+						<th>Cliente</th>
+						<th>Quantidade de ítens</th>
+						<th>Valor Total.</th>
 					</tr>
 					<tr ng-repeat="carrinho in carrinhos">
 						<td ng-click="selecionar(carrinho)" style="cursor: pointer;">{{carrinho.id}}</td>
+						<td ng-click="selecionar(carrinho)" style="cursor: pointer;">{{carrinho.dataCompra | date  :  "dd/MM/yyyy"}}</td>
 						<td ng-click="selecionar(carrinho)" style="cursor: pointer;">{{carrinho.cliente.usuario.nome}}</td>
 						<td ng-click="selecionar(carrinho)" style="cursor: pointer;">{{carrinho.compras.length}}</td>
-						<td ng-click="selecionar(carrinho)" style="cursor: pointer;">{{carrinho.valorTotal}}</td>
+						<td ng-click="selecionar(carrinho)" style="cursor: pointer;">{{carrinho.valorTotal  | currency}}</td>
 					</tr>
 				</table>
 			</div>
@@ -32,12 +34,16 @@
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+							<h4 class="modal-title" id="myModalLabel">Consutar Venda</h4>
 						</div>
 						<div class="modal-body">
 							<form name="fabricanteForm">
-								<input class="form-group form-control" ng-model="fabricante.id" name="id" placeholder="Cod." readonly /> 
-								<input class="form-group form-control" ng-model="fabricante.nome" name="nome" placeholder="Nome do fabricante" ng-required="true" ng-minLength="3" />
+								<input class="form-group form-control" ng-model="carrinho.id" name="id" placeholder="Cod." readonly /> 
+								<input class="form-group form-control" ng-model="carrinho.dataCompra" name="dataCompra" placeholder="Data da compra" ng-required="true" ng-minLength="3" ui-date />
+								<input class="form-group form-control" ng-model="carrinho.cliente.usuario.nome" name="cliente_nome" placeholder="Nome do cliente" ng-required="true" ng-minLength="3" />
+								<input class="form-group form-control" ng-model="carrinho.enderecoEntrega.logradouro" name="enderecoEntrega_logradouro" placeholder="LOgradouro" ng-required="true" ng-minLength="3" />
+								<input class="form-group form-control" ng-model="carrinho.enderecoEntrega.cidade" name="enderecoEntrega_cidade" placeholder="Cidade" ng-required="true" ng-minLength="3" />
+								<input class="form-group form-control" ng-model="carrinho.valorTotal | currency" name="valorTotal" placeholder="Nome do cliente" ng-required="true" ng-minLength="3" />
 							</form>
 						</div>
 						<div class="modal-footer">

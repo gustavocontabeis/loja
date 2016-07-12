@@ -4,7 +4,6 @@ angular.module("app").controller("vendasEfetuadasCtrl",function($scope, $http, v
 	$scope.carrinho = {};
 	
 	$scope.carregarTodos = function() {
-		console.log("xxxxxxxxxxxxxxxxxxxx");alert();
 		vendasEfetuadasAPI.buscarTodos().success(function(data) {
 			console.log("xx");
 			$scope.carrinhos = data.obj;

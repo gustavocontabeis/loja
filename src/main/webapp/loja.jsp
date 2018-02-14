@@ -64,6 +64,7 @@
 						<div class="panel-body">
 							<a ng-click="consultarProduto(produto)" class="thumbnail" >
 								<img src="data:image/svg+xml;base64,{{imagem.arquivo.dados}}" title="{{imagem.arquivo.id}} {{imagem.arquivo.nome}}"/>
+								<img src="{{imagem.arquivo.dados}}" alt="Description"/>
 							</a>
 						</div>
 						<div class="panel-footer">

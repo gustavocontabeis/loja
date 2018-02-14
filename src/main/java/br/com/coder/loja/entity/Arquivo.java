@@ -19,8 +19,8 @@ public class Arquivo extends AbstractBaseEntity {
 	@Column(name="ID_ARQUIVO")
 	private Long id;
 	
-	@Lob
-	@Column(name="DADOS", nullable=false)
+	//@Lob
+	@Column(name="DADOS", nullable=false) //columnDefinition="bytea not null "
 	private byte[] dados;
 	
 	@Column(name="TAMANHO")

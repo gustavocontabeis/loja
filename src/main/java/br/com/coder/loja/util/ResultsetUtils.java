@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -12,7 +13,12 @@ import javax.persistence.JoinColumn;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 
+import br.com.coder.loja.dao.ProdutoDAO;
+
 public class ResultsetUtils {
+	
+	private static Logger LOG = Logger.getLogger(ResultsetUtils.class.getName());
+
 
 	public static String getAtributoPeloNomeColuna(Object obj, String nomeColuna) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, NoSuchFieldException {
 		Map describe = BeanUtils.describe(obj);
@@ -40,12 +46,13 @@ public class ResultsetUtils {
 						JoinColumn column = (JoinColumn) annotation;
 						name = column.name();
 					}
-					if(name.equals(nomeColuna)){
+					if(name.equalsIgnoreCase(nomeColuna)){
 						return key.toString();
 					}
 				}
 			}
 		}
+		LOG.warning("Coluna "+ nomeColuna +" não encontrada.");
 		return null;
 	}
 

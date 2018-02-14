@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Query;
@@ -32,6 +33,8 @@ import br.com.coder.loja.util.JDBCUtil;
 public class ProdutoDAO extends BaseDAO<Produto> {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static Logger LOG = Logger.getLogger(ProdutoDAO.class.getName());
 
 	public List<Produto> buscarTodos() {
 		Session session = HibernateUtil.getSession();
@@ -92,7 +95,8 @@ public class ProdutoDAO extends BaseDAO<Produto> {
 	public List<Produto> consultaProdutosPorDepartamento(String estrutura) { 
 		while(estrutura.endsWith(".000"))
 			estrutura = StringUtils.removeEnd(estrutura, ".000");
-		String sql = "select PROD.ID_PRODUTO, img_prod.ID_IMAGEM_PRODUTO, arq.ID_ARQUIVO, PROD.ATIVO, PROD.COD_REFERENCIA_FABRICANTE, "
+		String sql = "select "
+				+ "PROD.ID_PRODUTO, img_prod.ID_IMAGEM_PRODUTO, arq.ID_ARQUIVO, PROD.ATIVO, PROD.COD_REFERENCIA_FABRICANTE, "
 				+ "PROD.ID_DEPARTAMENTO, PROD.DESCRICAO, PROD.ID_FABRICANTE, PROD.NOME, PROD.ID_VALOR, img_prod.ID_ARQUIVO, "
 				+ "img_prod.ID_PRODUTO, img_prod.ID_IMAGEM_PRODUTO, arq.DADOS, arq.EXTENCAO, arq.NOME, arq.TAMANHO, vlr.VALOR "
 				+ "from PRODUTO PROD "
@@ -124,9 +128,12 @@ public class ProdutoDAO extends BaseDAO<Produto> {
 				prod.getImagens().add(ip);
 				
 				try {
+					System.out.println("------------");
 					Object[] x = {prod,ip,arq,prod,prod,departamento,prod,fabricante,prod,valor,arq,prod,ip,arq,arq,arq,arq,valor};
+					System.out.println("------------ XXX");
 					for (int i = 0; i < alias.length; i++){ 
 						try {
+							LOG.info(i + " - " + String.valueOf(x[i])+" - "+String.valueOf(alias[i])+" - "+String.valueOf(obj[i]));
 							JDBCUtil.attr(x[i], alias[i], obj[i]);
 						} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException e) {
 							e.printStackTrace();
@@ -134,6 +141,7 @@ public class ProdutoDAO extends BaseDAO<Produto> {
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
+					throw new RuntimeException(e);
 				}
 				return prod;
 			}

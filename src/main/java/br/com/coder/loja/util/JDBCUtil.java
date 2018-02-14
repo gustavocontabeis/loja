@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.beanutils.PropertyUtils;
 
@@ -18,6 +19,7 @@ public class JDBCUtil {
 	private static final String URL = "jdbc:mysql://bancoloja321.mysql.uhserver.com:3306/bancoloja321";
 	private static final String USR = "loja1q2w3e";
 	private static final String PWD = "1qa2WS[]3ed";
+	private static Logger LOG = Logger.getLogger(JDBCUtil.class.getName());
 	
 	protected Connection conexao;
 	protected PreparedStatement stmt;
@@ -71,7 +73,10 @@ public class JDBCUtil {
 	}
 
 	public static void attr(Object object, String alias, Object vlr) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, NoSuchFieldException {
+		LOG.info(String.valueOf(object)+" - "+String.valueOf(alias)+" - "+String.valueOf(vlr));
 		String atributo = ResultsetUtils.getAtributoPeloNomeColuna(object, alias);
+		if(atributo == null)
+			throw new RuntimeException("Alias "+alias+ " não encontrado.");
 		Class propertyType = PropertyUtils.getPropertyType(object, atributo);
 		vlr = ParseUtil.p(vlr, propertyType);
 		PropertyUtils.setProperty(object, atributo, vlr);

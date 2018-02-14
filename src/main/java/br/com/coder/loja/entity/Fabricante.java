@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -20,7 +21,8 @@ public class Fabricante extends AbstractBaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO) 
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="FABRICANTE_SEQ")
+	@SequenceGenerator(sequenceName="FABRICANTE_SEQ", name="FABRICANTE_SEQ") 
 	@Column(name="ID_FABRICANTE")  
 	private Long id;
 	

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -20,7 +21,8 @@ public class Usuario extends AbstractBaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO) 
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USUARIO_SEQ")
+	@SequenceGenerator(sequenceName="USUARIO_SEQ", name="USUARIO_SEQ")
 	@Column(name="ID_USUARIO")  
 	private Long id;
 	

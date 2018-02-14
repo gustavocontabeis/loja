@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
 
 @Entity(name="ARQUIVO")
 public class Arquivo extends AbstractBaseEntity {
@@ -13,7 +14,8 @@ public class Arquivo extends AbstractBaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="arquivo_seq")
+	@SequenceGenerator(sequenceName="arquivo_seq", name="arquivo_seq")
 	@Column(name="ID_ARQUIVO")
 	private Long id;
 	

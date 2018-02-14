@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -21,7 +22,8 @@ public class EnderecoEntrega extends AbstractBaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ENDERECO_ENTREGA_SEQ")
+	@SequenceGenerator(sequenceName="ENDERECO_ENTREGA_SEQ", name="ENDERECO_ENTREGA_SEQ") 
 	@Column(name="ID_ENDERECO_ENTREGA")  
 	private Long id;
 	

@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -20,7 +21,8 @@ public class CaracteristicaProduto extends AbstractBaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO) 
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CARACTERISTICA_PRODUTO_SEQ")
+	@SequenceGenerator(sequenceName="CARACTERISTICA_PRODUTO_SEQ", name="CARACTERISTICA_PRODUTO_SEQ") 
 	@Column(name="ID_CARACTERISTICA_PRODUTO")  
 	private Long id;
 	

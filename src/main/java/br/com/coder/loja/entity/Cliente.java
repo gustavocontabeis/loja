@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -26,7 +27,8 @@ public class Cliente extends AbstractBaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO) 
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CLIENTE_SEQ")
+	@SequenceGenerator(sequenceName="CLIENTE_SEQ", name="CLIENTE_SEQ") 
 	@Column(name="ID_CLIENTE")  
 	private Long id;
 	

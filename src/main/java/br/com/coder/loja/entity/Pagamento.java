@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -20,7 +21,8 @@ public class Pagamento extends AbstractBaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO) 
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PAGAMENTO_SEQ")
+	@SequenceGenerator(sequenceName="PAGAMENTO_SEQ", name="PAGAMENTO_SEQ") 
 	@Column(name="ID_PAGAMENTO")  
 	private Long id;
 	

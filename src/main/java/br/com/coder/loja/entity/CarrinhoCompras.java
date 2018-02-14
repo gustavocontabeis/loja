@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -28,7 +29,8 @@ public class CarrinhoCompras extends AbstractBaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO) 
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CARRINHO_COMPRAS_SEQ")
+	@SequenceGenerator(sequenceName="CARRINHO_COMPRAS_SEQ", name="CARRINHO_COMPRAS_SEQ") 
 	@Column(name="ID_CARRINHO_COMPRAS")  
 	private Long id;
 	

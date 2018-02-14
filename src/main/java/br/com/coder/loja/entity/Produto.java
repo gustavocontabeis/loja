@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.ForeignKey;
@@ -23,7 +24,8 @@ public class Produto extends AbstractBaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO) 
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PRODUTO_SEQ")
+	@SequenceGenerator(sequenceName="PRODUTO_SEQ", name="PRODUTO_SEQ")
 	@Column(name="ID_PRODUTO")  
 	private Long id;
 	

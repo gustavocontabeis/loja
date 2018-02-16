@@ -89,6 +89,22 @@ public class BaseDAO<T extends BaseEntity> implements Serializable {
 		}
 	}
 
+	@SuppressWarnings({ "unchecked", "hiding" })
+	public <T extends BaseEntity> T buscar(Class classe, Long obj)  {
+		Session session = getSession();
+		//Transaction transaction = session.beginTransaction();
+		try {
+			T load = (T) session.get(classe, obj);
+			//transaction.commit();
+			return load;
+		} catch (HibernateException e) {
+			//transaction.rollback();
+			session.close();
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
 	protected void validate(BaseEntity obj) {
 		//AssertUtils.validate(obj);
 	}

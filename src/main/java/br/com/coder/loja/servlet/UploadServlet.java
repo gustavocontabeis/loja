@@ -85,9 +85,9 @@ public class UploadServlet extends HttpServlet {
 			session.setAttribute("arquivo-tamanho", part.getSize());
 			session.setAttribute("arquivo-dados", dados);
 			
-			System.out.println(session.getAttribute("arquivo-nome"));
-			System.out.println(session.getAttribute("arquivo-tamanho"));
-			System.out.println(session.getAttribute("arquivo-dados"));
+			//System.out.println(session.getAttribute("arquivo-nome"));
+			//System.out.println(session.getAttribute("arquivo-tamanho"));
+			//System.out.println(session.getAttribute("arquivo-dados"));
 			
 			ImagemProduto e = new ImagemProduto();
 			Arquivo arquivo = new Arquivo();

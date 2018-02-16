@@ -73,7 +73,7 @@ public class JDBCUtil {
 	}
 
 	public static void attr(Object object, String alias, Object vlr) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, NoSuchFieldException {
-		LOG.info(String.valueOf(object)+" - "+String.valueOf(alias)+" - "+String.valueOf(vlr));
+		//LOG.info(String.valueOf(object)+" - "+String.valueOf(alias)+" - "+String.valueOf(vlr));
 		String atributo = ResultsetUtils.getAtributoPeloNomeColuna(object, alias);
 		if(atributo == null)
 			throw new RuntimeException("Alias "+alias+ " não encontrado.");

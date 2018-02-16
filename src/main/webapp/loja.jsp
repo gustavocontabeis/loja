@@ -59,17 +59,20 @@
 	<div class="panel-body">
 		<div class="container-fluid">
 			<div ng-repeat="produto in produtos" style="cursor: pointer;">
-				<div class="col-xs-6 col-md-3" ng-repeat="imagem in produto.imagens">
+				<div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="imagem in produto.imagens">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<a ng-click="consultarProduto(produto)" class="thumbnail" >
+								<!-- 
 								<img src="data:image/svg+xml;base64,{{imagem.arquivo.dados}}" title="{{imagem.arquivo.id}} {{imagem.arquivo.nome}}"/>
-								<img src="{{imagem.arquivo.dados}}" alt="Description"/>
+								<img ng-src="{{imagem.arquivo.dados}}" alt="Description"/>
+								 -->
+								<img ng-src="data:image/jpg;base64,{{imagem.arquivo.dados}}" title="{{imagem.arquivo.id}} {{imagem.arquivo.nome}}">
 							</a>
 						</div>
 						<div class="panel-footer">
 							<div class="well well-sm">
-								<div>{{produto.nome}}</div>
+								<div>X{{produto.nome}}</div>
 								<div style="text-align:right;">{{produto.valor.valor | currency }}</div>
 							</div>
 						</div>

@@ -20,7 +20,7 @@ public class Arquivo extends AbstractBaseEntity {
 	private Long id;
 	
 	//@Lob
-	@Column(name="DADOS", nullable=false) //columnDefinition="bytea not null "
+	@Column(name="DADOS", nullable=false, columnDefinition="bytea not null" )
 	private byte[] dados;
 	
 	@Column(name="TAMANHO")

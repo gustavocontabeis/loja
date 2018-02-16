@@ -128,12 +128,10 @@ public class ProdutoDAO extends BaseDAO<Produto> {
 				prod.getImagens().add(ip);
 				
 				try {
-					System.out.println("------------");
 					Object[] x = {prod,ip,arq,prod,prod,departamento,prod,fabricante,prod,valor,arq,prod,ip,arq,arq,arq,arq,valor};
-					System.out.println("------------ XXX");
 					for (int i = 0; i < alias.length; i++){ 
 						try {
-							LOG.info(i + " - " + String.valueOf(x[i])+" - "+String.valueOf(alias[i])+" - "+String.valueOf(obj[i]));
+							//LOG.info(i + " - " + String.valueOf(x[i])+" - "+String.valueOf(alias[i])+" - "+String.valueOf(obj[i]));
 							JDBCUtil.attr(x[i], alias[i], obj[i]);
 						} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException e) {
 							e.printStackTrace();
